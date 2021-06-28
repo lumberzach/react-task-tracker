@@ -1,0 +1,32 @@
+{
+  "tasks": [
+    {
+      "text": "Kaboat",
+      "description": "3-4 person",
+      "owner": "The Snarblord",
+      "reminder": true,
+      "id": 2
+    },
+    {
+      "text": "Jetboil",
+      "description": "",
+      "owner": "Sappie",
+      "reminder": true,
+      "id": 3
+    },
+    {
+      "text": "Ice Chest",
+      "description": "40L",
+      "owner": "Eugene",
+      "reminder": true,
+      "id": 4
+    },
+    {
+      "text": "Tent",
+      "description": "4 person tent",
+      "owner": "Zach",
+      "reminder": true,
+      "id": 5
+    }
+  ]
+}
