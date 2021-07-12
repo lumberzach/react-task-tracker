@@ -5,6 +5,8 @@ const AddTask = ({ onAdd }) => {
     const [description, setDescription] = useState('')
     const [owner, setOwner] = useState('')
     const [reminder, setRemindOwner] = useState(false)
+    //const [_id, setId] = useState('')
+    
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -12,13 +14,14 @@ const AddTask = ({ onAdd }) => {
             alert('Please add an item')
             return
         }
-        onAdd({text, description, owner, reminder})
+        onAdd({ text, description, owner, reminder })
 
         setText('')
         setDescription('')
         setOwner('')
-        setRemindOwner(true)
-
+        setRemindOwner(false)
+        
+        
 
     }
 

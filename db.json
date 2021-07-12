@@ -23,10 +23,24 @@
     },
     {
       "text": "Tent",
-      "description": "4 person tent",
+      "description": "4 person",
       "owner": "Zach",
       "reminder": true,
       "id": 5
+    },
+    {
+      "text": "Fakeitem",
+      "description": "asdasdas",
+      "owner": "asdasd",
+      "reminder": false,
+      "id": 6
+    },
+    {
+      "text": "test1",
+      "description": "test2",
+      "owner": "test3",
+      "reminder": false,
+      "id": 7
     }
   ]
 }
