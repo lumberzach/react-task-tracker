@@ -5,6 +5,7 @@ import axios from 'axios'
 //import Logout from './Components/Logout';
 import Header from './Components/Header'
 import Footer from './Components/Footer'
+import Landing from './Components/Landing'
 import About from './Components/About'
 import Tasks from './Components/Tasks'
 import Logo from './Components/Logo'
@@ -36,6 +37,7 @@ const App = () => {
   const fetchTask = async (_id) => {
     const res = await fetch(`http://localhost:3000/items/${_id}`)
     const data = await res.json()
+    console.log(data)
 
     return data
   }
@@ -51,7 +53,7 @@ const App = () => {
       _id: task._id
   }).then(response => {
     setTasks([...tasks, response.data]);
-    console.log(response.data)
+    console.log("This is the response data:" , response.data)
   }, (error) => {
     console.log(error);
   });
@@ -60,30 +62,25 @@ const App = () => {
   // Delete Task 
   //TODO: need to check response to confirm deleted from db
   const deleteTask = async (_id) => {
-    axios.delete("/delete/" + _id);
+    axios.delete("/delete/" + _id)
+    .then(response => {
+      console.log("This is the response" , response.data)
+    })
+
     console.log(`Deleted item with io ${_id}`)
     setTasks(tasks.filter((task) => task._id !== _id ))
   }
 
-  // // Toggle Reminder
-  // const toggleReminder = async (_id) => {
-  //   const taskToToggle = await fetchTask(_id)
-  //   const updTask = {...taskToToggle,
-  //   reminder: !taskToToggle.reminder}
-  //   const res = await fetch(`http://localhost:3000/items/${_id}`, {
-  //     method: 'PUT',
-  //     headers: {
-  //       'Content-type': 'application/json'
-  //     },
-  //     body: JSON.stringify(updTask)
-  //   } )
-
-  //   const data = await res.json()
-
-    
-  //   setTasks(tasks.map((task) => 
-  //   task._id === _id ? { ...task, reminder: data.reminder } : task))
-  // }
+  // Toggle Reminder
+  const toggleReminder = async (_id, reminder) => {
+    axios.put('/put/'+ _id)
+    setTasks(
+      tasks.map((task) =>
+        task._id === _id ? { ...task, reminder: !task.reminder } : task
+      )
+    )
+  
+}
 
   return (
     <Router>
@@ -94,10 +91,11 @@ const App = () => {
           <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask} />
           {showAddTask && <AddTask onAdd={addTask} />}
           {tasks.length > 0 ? 
-          <Tasks tasks={tasks} onDelete={deleteTask} /> : 'No items found, please add to this list.'}
+          <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/> : <h4 style={{ textAlign: 'center' }}> No items found, please add to this list. </h4>}
         </>
       )}/>
       <Route path='/about' component={About} />
+      <Route path='/landing' component={Landing} />
       <Footer />
     </div>
     </Router>

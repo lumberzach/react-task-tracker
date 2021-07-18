@@ -12,7 +12,7 @@ body {
 }
 
 .container {
-  max-width: 800px;
+  max-width: auto;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
@@ -21,13 +21,36 @@ body {
   border-radius: 10px;
 }
 
+.landing {
+  max-width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px auto;
+  padding: 30px;
+}
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  max-width: auto;
+  margin: 30px;
+  align-content: space-between;
+  line-height: 1.5;
+}
+
+.landing-lottie {
+  overflow: hidden;
+
+}
+
 .logo {
-  margin: -100px auto -50px auto;
+  margin: -100px auto auto;
 }
 
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-bottom: 20px;
 }
@@ -39,6 +62,20 @@ body {
   border: none;
   padding: 10px 20px;
   margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
+  text-transform: uppercase;
+}
+.btn-landing {
+  max-width: fit-content;
+  background: #F5E6D1;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px 0px 5px 0px;
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
@@ -84,6 +121,14 @@ body {
   text-transform: capitalize;
 }
 
+.tasks {
+  max-width: 800px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  padding: 30px;
+}
+
 .task.reminder {
   border-left: 5px solid green;
 }
@@ -99,6 +144,13 @@ body {
 
 .add-form {
   margin-bottom: 40px;
+  max-width: 800px;
+  margin: auto;
+  min-height: 300px;
+  border: 0px solid steelblue;
+  
+  padding: 30px;
+  
 }
 
 .form-control {
@@ -147,5 +199,6 @@ body {
   font-size: 10px;
   font-weight: bold;
   font-family: 'Lato', sans-serif;
+
   
 }

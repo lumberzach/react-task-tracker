@@ -26,14 +26,14 @@ const itemSchema = {
 const Item = mongoose.model("Item", itemSchema)
 
 //read route
-app.get("/items", (req, res) => {
+app.get('/items', (req, res) => {
     Item.find()
     .then(items => res.json(items))
     .catch(err => res.status(400).json('Error: ' + err))
 });
 
 //create route
-app.post("/newitem", (req, res) => {
+app.post('/newitem', (req, res) => {
     const newItem = new Item (
         {
             text: req.body.text,
@@ -49,7 +49,7 @@ app.post("/newitem", (req, res) => {
 
 });
 
-//delete reoute
+//delete route
 app.delete('/delete/:id', (req, res) => {
     const id = req.params.id;
 
@@ -57,13 +57,29 @@ app.delete('/delete/:id', (req, res) => {
         if(!err) {
             console.log("Item deleted!", id);
         } else {
-            console.log(err);
+            console.log(err)
         }
     });
     data = res.json();
 });
 
 // update route
+app.put('/put/:id', (req, res) => {
+    console.log('route touched')
+
+    Item.findOneAndUpdate(
+        { _id: req.params.id },
+        [{ $set: { reminder: {$not: "$reminder" } } }],
+        (req, res, err) => {
+            if (!err) {
+                console.log("Item successfully updated");
+            } else {
+                console.log(err)
+            }
+        }
+    );
+    data = res.json();
+});
 
 app.listen(port, () => {
     console.log("Express is now running");
