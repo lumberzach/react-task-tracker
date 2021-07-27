@@ -98,5 +98,5 @@ app.put('/put/:id', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log("Express is now running");
+    console.log(`Server is running on port ${PORT}`);
 });
