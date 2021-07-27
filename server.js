@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
-const port = 3001;
+const port = process.env.PORT || 3001
+require("dotenv").config()
 
 //config
 app.use(cors());
@@ -11,7 +12,14 @@ app.use(express.urlencoded({extended: false}));
 
 
 //connect to mongodb
-mongoose.connect('mongodb+srv://zach:pn1567@cluster0.p3ngr.mongodb.net/newitemsDB?retryWrites=true&w=majority')
+mongoose
+     .connect(process.env.MONGODB_CONNECTION_STRING,
+        {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+          })
+     .then(() => console.log("MongoDB has been connected"))
+     .catch((err) => console.log(err));
 
 //data schema
 const itemSchema = {

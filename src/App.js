@@ -3,9 +3,12 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import axios from 'axios'
 //import Login from './Components/Login';
 //import Logout from './Components/Logout';
+import Nav from './Components/Nav'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
 import Landing from './Components/Landing'
+import Map from './Components/Map'
+import Loader from './Components/Loader'
 import About from './Components/About'
 import Tasks from './Components/Tasks'
 import Logo from './Components/Logo'
@@ -14,14 +17,25 @@ import AddTask from './Components/AddTask'
 const App = () => {
   const [showAddTask, setShowAddTask] = useState (false)
   const [tasks, setTasks] = useState([]);
+  const [fireData, setFireData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  
 
   useEffect(() => {
     const getTasks = async () => {
       const tasksFromServer = await fetchTasks()
       setTasks(tasksFromServer)
     }
+    const fetchFireData = async () => {
+      setLoading(true)
+      const res = await fetch('https://eonet.sci.gsfc.nasa.gov/api/v2.1/events')
+      const { events } = await res.json()
+      setFireData(events)
+      setLoading(false)
+    }
 
     getTasks()
+    fetchFireData()
   }, [])
 
   //Fetch Tasks
@@ -32,14 +46,6 @@ const App = () => {
 
     return data
 
-  }
-  //Fetch Task
-  const fetchTask = async (_id) => {
-    const res = await fetch(`http://localhost:3000/items/${_id}`)
-    const data = await res.json()
-    console.log(data)
-
-    return data
   }
 
   // Add Task
@@ -84,10 +90,11 @@ const App = () => {
 
   return (
     <Router>
-    <div className='container'>
-      <Logo />
+    <div className=''>
+    <Nav/>
       <Route path='/' exact render={(props) => (
         <>
+          <Logo />
           <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask} />
           {showAddTask && <AddTask onAdd={addTask} />}
           {tasks.length > 0 ? 
@@ -96,6 +103,15 @@ const App = () => {
       )}/>
       <Route path='/about' component={About} />
       <Route path='/landing' component={Landing} />
+      <Route 
+        path='/wildfires' 
+        component={() => (
+          !loading ?
+          <Map fireData={fireData} />
+          : <Loader/>
+        )}
+        />
+
       <Footer />
     </div>
     </Router>

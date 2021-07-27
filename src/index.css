@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;600;700;800&display=swap');
 
 * {
   box-sizing: border-box;
@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: 'Dela Gothic One', cursive;
+  font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
 }
 
@@ -21,6 +21,94 @@ body {
   border-radius: 10px;
 }
 
+.topnav {
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+  background-color: #2E2E2E;
+}
+
+.topnav a {
+ 
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+  
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+  
+}
+
+.topnav img {
+  max-width: 200px;
+  margin-right: auto;
+}
+
+.hamburger {
+  margin: 3px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: rgb(253, 253, 253);
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+/* Rotate first bar */
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+  transform: rotate(-45deg) translate(-9px, 6px) ;
+}
+
+/* Fade out the second bar */
+.change .bar2 {
+  opacity: 0;
+}
+
+/* Rotate last bar */
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+  transform: rotate(45deg) translate(-8px, -8px) ;
+}
+
+@media only screen and (max-width: 850px) {
+  .topnav {
+    display: grid;
+    font-size: 10px;
+    justify-content: center;
+  }
+  .hamburger {
+    display: grid;
+    margin: 0;
+    justify-content: center;
+    padding: 5px;
+  }
+  .bar1, .bar2, .bar3 {
+    margin: 3px 0;
+  }
+  .change {
+    display: grid;
+    margin: 0;
+    justify-content: center;
+    padding: 5px;
+
+  }
+}
+
 .landing {
   max-width: auto;
   display: flex;
@@ -28,6 +116,68 @@ body {
   justify-content: center;
   margin: 30px auto;
   padding: 30px;
+}
+
+.map {
+  max-width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+}
+
+.location-marker {
+  font-size: 2rem;
+  color: red;
+}
+
+.location-marker:hover {
+  color: #2E2E2E;
+}
+
+.fire-info {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 400px;
+  min-height: 200px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 20px;
+  font-size: 18px;
+  box-shadow: 10px 10px 5px grey;
+}
+
+@media only screen and (max-width: 900px) {
+  .fire-info {
+    align-self: center;
+    max-width: 75vw;
+  }
+}
+
+.fire-info ul {
+  list-style-type: none;
+  padding: 0;
+
+}
+
+.fire-info li {
+  padding: 5px 0;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: capitalize;
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.loader img {
+  width: 400px;
 }
 
 .cta {
@@ -39,13 +189,57 @@ body {
   line-height: 1.5;
 }
 
+.cta h1 {
+  font-size: 69px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  line-height: 1.0;
+}
+
+.cta p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 900px) {
+  .landing {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 20px;
+  }
+  .cta h1 {
+    text-align: center;
+    font-size: 30px;
+  }
+  .cta p {
+    text-align: center;
+    font-size: 20px;
+  }
+  .btn-landing {
+    align-self: center;
+  }
+  .landing-lottie {
+    margin-top: -150px;
+    z-index: -1;
+  }
+  
+}
+
 .landing-lottie {
   overflow: hidden;
-
 }
 
 .logo {
   margin: -100px auto auto;
+}
+
+@media only screen and (max-width: 900px) {
+  .logo {
+    align-self: center;
+    margin: auto auto;
+  }
 }
 
 .header {
@@ -53,11 +247,13 @@ body {
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  
+  z-index: 2;
 }
 
 .btn {
   display: inline-block;
-  background: #F5E6D1;
+  background: #96D9C9;
   color: #000;
   border: none;
   padding: 10px 20px;
@@ -65,21 +261,8 @@ body {
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
-  font-size: 15px;
-  font-family: inherit;
-  text-transform: uppercase;
-}
-.btn-landing {
-  max-width: fit-content;
-  background: #F5E6D1;
-  color: #000;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px 0px 5px 0px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 15px;
+  font-size: 22px;
+  font-weight: 800;
   font-family: inherit;
   text-transform: uppercase;
 }
@@ -99,6 +282,28 @@ body {
   text-transform: uppercase;
 }
 
+.btn-landing {
+  max-width: fit-content;
+  background: #96D9C9;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px 0px 5px 0px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: 800;
+  font-family: inherit;
+  text-transform: uppercase;
+  
+}
+
+.btn-landing:hover {
+  background: #EAFCFC;
+  border: solid 1px;
+}
+
 .btn:focus {
   outline: none;
 }
@@ -110,6 +315,7 @@ body {
 .btn-block {
   display: block;
   width: 100%;
+  
 }
 
 .task {
@@ -117,7 +323,7 @@ body {
   margin: 5px;
   padding: 10px 20px;
   cursor: pointer;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Opensans', sans-serif;
   text-transform: capitalize;
 }
 
@@ -137,7 +343,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   text-transform: uppercase;
   font-size: 20px;
 }
@@ -147,8 +353,8 @@ body {
   max-width: 800px;
   margin: auto;
   min-height: 300px;
-  border: 0px solid steelblue;
-  
+  border-radius: 15px;
+  box-shadow: 5px 5px 7px 7px #CECECE;
   padding: 30px;
   
 }
@@ -159,6 +365,8 @@ body {
 
 .form-control label {
   display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
 }
 
 .form-control input {
@@ -191,6 +399,19 @@ body {
 
 .about-lottie {
   overflow: hidden;
+}
+
+@media only screen and (max-width: 900px) {
+  .about {
+    display: flex;
+    flex-direction: column;
+
+  }
+  .about-lottie {
+    align-self: center;
+    
+  }
+  
 }
 
 .footer {

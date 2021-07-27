@@ -5,8 +5,6 @@ const AddTask = ({ onAdd }) => {
     const [description, setDescription] = useState('')
     const [owner, setOwner] = useState('')
     const [reminder, setRemindOwner] = useState(false)
-    //const [_id, setId] = useState('')
-    
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -20,8 +18,6 @@ const AddTask = ({ onAdd }) => {
         setDescription('')
         setOwner('')
         setRemindOwner(false)
-        
-        
 
     }
 
