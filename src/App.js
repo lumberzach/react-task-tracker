@@ -45,11 +45,9 @@ const App = () => {
     const data = await res.json()
 
     return data
-
   }
 
   // Add Task
-
   const addTask = async (task) => {
     axios.post('/newitem',{
       text: task.text,
@@ -78,14 +76,13 @@ const App = () => {
   }
 
   // Toggle Reminder
-  const toggleReminder = async (_id, reminder) => {
+  const toggleReminder = async (_id) => {
     axios.put('/put/'+ _id)
     setTasks(
       tasks.map((task) =>
         task._id === _id ? { ...task, reminder: !task.reminder } : task
       )
     )
-  
 }
 
   return (
